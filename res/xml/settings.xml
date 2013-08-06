@@ -7,5 +7,15 @@
               android:targetPackage="ru.mail.parking.widget"
               android:targetClass="ru.mail.parking.widget.ui.DataDetailsActivity"/>
     </PreferenceScreen>
+
+    <PreferenceScreen android:title="@string/prefs_info_about">
+      <intent android:action="android.intent.action.VIEW"
+              android:targetPackage="ru.mail.parking.widget"
+              android:targetClass="ru.mail.parking.widget.ui.AboutActivity"/>
+    </PreferenceScreen>
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="@string/prefs_config">
+
   </PreferenceCategory>
 </PreferenceScreen>

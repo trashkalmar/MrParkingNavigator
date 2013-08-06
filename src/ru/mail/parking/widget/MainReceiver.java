@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import ru.mail.parking.widget.ui.DataDetailsActivity;
 import ru.mail.parking.widget.ui.SettingsActivity;
 
 public class MainReceiver extends BroadcastReceiver {
@@ -15,11 +16,17 @@ public class MainReceiver extends BroadcastReceiver {
     if (ACTION_CLICK.equals(intent.getAction())) {
       switch (App.prefs().getClickAction()) {
         case settings:
-          context.startActivity(new Intent(context, SettingsActivity.class));
+          context.startActivity(new Intent(context, SettingsActivity.class)
+                                   .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
           break;
 
         case update:
           SmartUpdate.force();
+          break;
+
+        case details:
+          context.startActivity(new Intent(context, DataDetailsActivity.class)
+                                   .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
           break;
       }
     } else

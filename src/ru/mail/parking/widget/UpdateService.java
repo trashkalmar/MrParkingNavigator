@@ -25,12 +25,15 @@ public class UpdateService extends IntentService {
   private static final String DATA_TIME = "time";
   private static final SimpleDateFormat DATA_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
+  private static volatile boolean sIsUpdating = false;
+
 
   public UpdateService() {
     super(SERVICE_NAME);
   }
 
   private void updateData() {
+    sIsUpdating = true;
     PowerManager.WakeLock wl = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, SERVICE_NAME);
 
     try {
@@ -60,12 +63,14 @@ public class UpdateService extends IntentService {
       String ts = jo.getString(DATA_TIME);
       Date d = DATA_TIME_FORMAT.parse(ts);
 
-      App.prefs().setLastInfo(free, d.getTime());
+      App.prefs().setLastInfo(free, d.getTime(), line);
       MainWidgetProvider.updateAll();
     } catch (IOException e) {
     } catch (JSONException e) {
     } catch (ParseException e) {
     } finally {
+      sIsUpdating = false;
+
       if (wl.isHeld())
         wl.release();
     }
@@ -74,5 +79,10 @@ public class UpdateService extends IntentService {
   @Override
   protected void onHandleIntent(Intent intent) {
     updateData();
+  }
+
+  public static void start() {
+    if (!sIsUpdating)
+      App.app().startService(new Intent(App.app(), UpdateService.class));
   }
 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import static ru.mail.parking.widget.App.app;
 import static ru.mail.parking.widget.Preferences.TimeFormat;
 
 public class MainWidgetProvider extends AppWidgetProvider {
@@ -34,7 +35,7 @@ public class MainWidgetProvider extends AppWidgetProvider {
     TimeFormat tf = App.prefs().getTimeFormat();
     boolean show = (tf != TimeFormat.none);
 
-    String when = (show ? App.prefs().getLastUpdate() : "");
+    String when = (show ? App.prefs().getLastRefresh() : "");
 
     for (int id: appWidgetIds) {
       RemoteViews frame = new RemoteViews(context.getPackageName(), R.layout.widget);
@@ -54,11 +55,12 @@ public class MainWidgetProvider extends AppWidgetProvider {
   }
 
   public static void updateAll() {
-    AppWidgetManager mgr = AppWidgetManager.getInstance(App.app());
+    AppWidgetManager mgr = AppWidgetManager.getInstance(app());
     if (mgr == null) return;
 
-    int[] ids = mgr.getAppWidgetIds(new ComponentName(App.app().getPackageName(),
-                                                      "." + MainWidgetProvider.class.getSimpleName()));
-    update(App.app(), mgr, ids);
+    int[] ids = mgr.getAppWidgetIds(new ComponentName(app().getPackageName(),
+                                                      app().getPackageName() + "." +
+                                                      MainWidgetProvider.class.getSimpleName()));
+    update(app(), mgr, ids);
   }
 }

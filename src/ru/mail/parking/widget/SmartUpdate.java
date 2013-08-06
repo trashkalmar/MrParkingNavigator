@@ -25,7 +25,7 @@ public final class SmartUpdate {
 
   public static void force() {
     abort();
-    App.app().startService(new Intent(App.app(), UpdateService.class));
+    UpdateService.start();
   }
 
   public static void abort() {

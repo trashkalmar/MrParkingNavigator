@@ -10,6 +10,7 @@ public class Preferences {
     last_fetch,
     last_update,
     last_places,
+    last_data,
     click_action,
     time_format,
     update_policy
@@ -17,7 +18,8 @@ public class Preferences {
 
   public enum ClickAction {
     update,
-    settings;
+    settings,
+    details;
 
     public static ClickAction getDefault() {
       return update;
@@ -70,12 +72,16 @@ public class Preferences {
     return App.formatDate(mPrefs.getLong(Keys.last_fetch.name(), 0), TimeFormat.full, false);
   }
 
-  public String getLastUpdate() {
+  public String getLastRefresh() {
     return App.formatDate(mPrefs.getLong(Keys.last_update.name(), 0), getTimeFormat(), true);
   }
 
   public int getLastPlaces() {
     return mPrefs.getInt(Keys.last_places.name(), -1);
+  }
+
+  public String getLastData() {
+    return mPrefs.getString(Keys.last_data.name(), App.app().getString(R.string.unknown));
   }
 
   public ClickAction getClickAction() {
@@ -105,11 +111,12 @@ public class Preferences {
     }
   }
 
-  public void setLastInfo(int places, long lastUpdate) {
+  public void setLastInfo(int places, long lastUpdate, String data) {
     mPrefs.edit()
           .putInt(Keys.last_places.name(), places)
           .putLong(Keys.last_update.name(), lastUpdate)
           .putLong(Keys.last_fetch.name(), System.currentTimeMillis())
+          .putString(Keys.last_data.name(), data)
           .commit();
   }
 

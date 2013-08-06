@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <string name="build_date">07-AUG-2013</string>
+
   <string name="app_name">Mail.Ru Parking</string>
   <string name="time_format">H:mm:ss</string>
   <string name="time_format_date">(MM/dd)</string>
@@ -21,9 +23,19 @@
   <string name="prefs_config_click_update">Refresh data</string>
   <string name="prefs_config_click_settings">Show settings</string>
 
+  <!-- Data details -->
   <string name="info_last_title">Last fetched data</string>
-  <string name="info_last_fetch">Fetched:</string>
-  <string name="info_last_refresh">Refresh:</string>
-  <string name="info_last_places">Free places:</string>
+  <string name="info_last_fetch">Fetched at %s</string>
+  <string name="info_last_refresh">Refreshed at %s</string>
+  <string name="info_last_places">Free places: %d</string>
   <string name="info_last_data">Data:</string>
+  <string name="info_refresh_now">Refresh now</string>
+  <string name="info_refresh_failed">Failed to fetch data</string>
+
+  <!-- About screen -->
+  <string name="about_title">About…</string>
+  <string name="about_version">Version: %s</string>
+  <string name="about_author">Author: Alexander Marchuk\na.marchuk@corp.mail.ru or kalmar.trash@mail.ru</string>
+  <string name="about_full_page">Full page: p.corp.mail.ru</string>
+  <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingWidget</string>
 </resources>

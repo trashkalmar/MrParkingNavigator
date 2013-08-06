@@ -8,13 +8,9 @@
               android:gravity="center_horizontal"
               android:background="@drawable/widget_bg">
   <TextView android:id="@+id/count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/counter_label"
             android:layout_gravity="center_horizontal"
-            android:text="\???"
-            android:textSize="32sp"
-            android:textColor="#FFFAA001"
-            android:fontFamily="sans-serif"/>
+            android:text="\???"/>
 
   <TextView android:id="@+id/updated"
             android:layout_width="wrap_content"
