@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="ru.mail.parking.widget"
+          android:versionCode="1"
+          android:versionName="1.0"
+          android:installLocation="internalOnly">
+  <uses-sdk android:minSdkVersion="8"
+            android:targetSdkVersion="17"/>
+
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+
+  <application android:label="@string/app_name"
+               android:name=".App">
+    <receiver android:name=".MainWidgetProvider">
+      <meta-data android:name="android.appwidget.provider"
+                 android:resource="@xml/provider"/>
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+      </intent-filter>
+    </receiver>
+
+    <receiver android:name=".MainReceiver">
+      <intent-filter>
+        <action android:name="android.intent.ACTION_TIMEZONE_CHANGED"/>
+        <action android:name="android.intent.ACTION_TIME"/>
+        <action android:name="ru.mail.parking.widget.CLICK"/>
+      </intent-filter>
+    </receiver>
+
+    <service android:name=".UpdateService"/>
+
+    <activity android:name=".ui.SettingsActivity">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+
+    <activity android:name=".ui.DataDetailsActivity"
+            />
+  </application>
+</manifest>

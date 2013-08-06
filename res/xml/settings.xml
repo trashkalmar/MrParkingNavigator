@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory android:title="@string/prefs_info">
+    <PreferenceScreen android:title="@string/prefs_info_details">
+      <intent android:action="android.intent.action.VIEW"
+              android:targetPackage="ru.mail.parking.widget"
+              android:targetClass="ru.mail.parking.widget.ui.DataDetailsActivity"/>
+    </PreferenceScreen>
+  </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Mail.Ru парковка</string>
+  <string name="time_format">HH:mm:ss</string>
+  <string name="time_format_date">(dd/MM)</string>
+  <string name="unknown">Неизвестно</string>
+</resources>
