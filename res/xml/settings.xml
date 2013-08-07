@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <PreferenceCategory android:title="@string/prefs_info">
-    <PreferenceScreen android:title="@string/prefs_info_details">
-      <intent android:action="android.intent.action.VIEW"
-              android:targetPackage="ru.mail.parking.widget"
-              android:targetClass="ru.mail.parking.widget.ui.DataDetailsActivity"/>
-    </PreferenceScreen>
+  <PreferenceCategory android:title="@string/prefs_config">
+    <ListPreference android:title="@string/prefs_config_update_title"
+                    android:key="@string/prefs_key_update_mode"
+                    android:entryValues="@array/prefs_config_update_modes_keys"
+                    android:entries="@array/prefs_config_update_modes"
+                    android:defaultValue="@string/prefs_config_update_mode_default"/>
 
+    <ListPreference android:title="@string/prefs_config_click_title"
+                    android:key="@string/prefs_key_click_action"
+                    android:entryValues="@array/prefs_config_click_actions_keys"
+                    android:entries="@array/prefs_config_click_actions"
+                    android:defaultValue="@string/prefs_config_click_action_default"/>
+
+    <ListPreference android:title="@string/prefs_config_time_format_title"
+                    android:key="@string/prefs_key_time_format"
+                    android:entryValues="@array/prefs_config_time_formats_keys"
+                    android:entries="@array/prefs_config_time_formats"
+                    android:defaultValue="@string/prefs_config_time_format_default"/>
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="@string/prefs_info">
     <PreferenceScreen android:title="@string/prefs_info_about">
       <intent android:action="android.intent.action.VIEW"
               android:targetPackage="ru.mail.parking.widget"
               android:targetClass="ru.mail.parking.widget.ui.AboutActivity"/>
     </PreferenceScreen>
-  </PreferenceCategory>
 
-  <PreferenceCategory android:title="@string/prefs_config">
-
+    <PreferenceScreen android:title="@string/prefs_info_details">
+      <intent android:action="android.intent.action.VIEW"
+              android:targetPackage="ru.mail.parking.widget"
+              android:targetClass="ru.mail.parking.widget.ui.DataDetailsActivity"/>
+    </PreferenceScreen>
   </PreferenceCategory>
 </PreferenceScreen>

@@ -4,4 +4,40 @@
   <string name="time_format">HH:mm:ss</string>
   <string name="time_format_date">(dd/MM)</string>
   <string name="unknown">Неизвестно</string>
+
+  <!-- Settings -->
+  <string name="prefs_info">Информация</string>
+  <string name="prefs_info_details">Детализация данных</string>
+  <string name="prefs_info_about">О программе</string>
+
+  <string name="prefs_config">Настройки</string>
+  <string name="prefs_config_update_title">Режим обновления</string>
+  <string name="prefs_config_update_manual">Вручную</string>
+  <string name="prefs_config_update_auto">Автоматически</string>
+  <string name="prefs_config_update_smart">Интеллектуальный</string>
+
+  <string name="prefs_config_click_title">Тап по виджету</string>
+  <string name="prefs_config_click_update">Обновить данные</string>
+  <string name="prefs_config_click_details">Показать детали</string>
+
+  <string name="prefs_config_time_format_title">Формат даты</string>
+  <string name="prefs_config_time_format_none">Не показывать</string>
+  <string name="prefs_config_time_format_time">Время</string>
+  <string name="prefs_config_time_format_date">Дата и время</string>
+
+  <!-- Data details -->
+  <string name="info_last_title">Последние загруженные данные</string>
+  <string name="info_last_fetch">Загружено в %s</string>
+  <string name="info_last_refresh">Обновлено в %s</string>
+  <string name="info_last_places">Свободных мест: %d</string>
+  <string name="info_last_data">Данные:</string>
+  <string name="info_refresh_now">Обновить сейчас</string>
+  <string name="info_refresh_failed">не удалось загрузить данные</string>
+
+  <!-- About screen -->
+  <string name="about_title">О программе…</string>
+  <string name="about_version">Версия: %s</string>
+  <string name="about_author">Автор: Александр Марчук\na.marchuk@corp.mail.ru или kalmar.trash@mail.ru</string>
+  <string name="about_full_page">Полная страница: p.corp.mail.ru</string>
+  <string name="about_github">Исходный код: www.github.com/trashkalmar/MrParkingWidget</string>
 </resources>

@@ -3,10 +3,12 @@ package ru.mail.parking.widget;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class Preferences {
+public class Preferences implements SharedPreferences.OnSharedPreferenceChangeListener {
+  public static final String NAME = "settings";
+
   private final SharedPreferences mPrefs;
 
-  private enum Keys {
+  public enum Keys {
     last_fetch,
     last_update,
     last_places,
@@ -18,21 +20,15 @@ public class Preferences {
 
   public enum ClickAction {
     update,
-    settings,
     details;
 
+    private static ClickAction sDefault;
+
     public static ClickAction getDefault() {
-      return update;
-    }
-  }
+      if (sDefault == null)
+        sDefault = valueOf(App.app().getString(R.string.prefs_config_click_action_default));
 
-  public enum UpdatePolicy {
-    auto,
-    manual,
-    smart;
-
-    public static UpdatePolicy getDefault() {
-      return smart;
+      return sDefault;
     }
   }
 
@@ -56,8 +52,13 @@ public class Preferences {
       }
     };
 
+    private static TimeFormat sDefault;
+
     public static TimeFormat getDefault() {
-      return full;
+      if (sDefault == null)
+        sDefault = valueOf(App.app().getString(R.string.prefs_config_time_format_default));
+
+      return sDefault;
     }
 
     public abstract String getFormatString();
@@ -65,11 +66,21 @@ public class Preferences {
 
 
   public Preferences() {
-    mPrefs = App.app().getSharedPreferences("settings", Context.MODE_PRIVATE);
+    mPrefs = App.app().getSharedPreferences(NAME, Context.MODE_PRIVATE);
+    mPrefs.registerOnSharedPreferenceChangeListener(this);
+  }
+
+  @Override
+  public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    if (Keys.time_format.name().equals(key))
+      MainWidgetProvider.updateAll();
+
+    if (Keys.update_policy.name().equals(key))
+      SmartUpdate.schedule();
   }
 
   public String getLastFetch() {
-    return App.formatDate(mPrefs.getLong(Keys.last_fetch.name(), 0), TimeFormat.full, false);
+    return App.formatDate(mPrefs.getLong(Keys.last_fetch.name(),0),TimeFormat.full,false);
   }
 
   public String getLastRefresh() {
@@ -93,12 +104,12 @@ public class Preferences {
     }
   }
 
-  public UpdatePolicy getUpdatePolicy() {
-    String v = mPrefs.getString(Keys.update_policy.name(), UpdatePolicy.getDefault().name());
+  public SmartUpdate.Policy getUpdatePolicy() {
+    String v = mPrefs.getString(Keys.update_policy.name(), SmartUpdate.Policy.getDefault().name());
     try {
-      return UpdatePolicy.valueOf(v);
+      return SmartUpdate.Policy.valueOf(v);
     } catch (IllegalArgumentException e) {
-      return UpdatePolicy.getDefault();
+      return SmartUpdate.Policy.getDefault();
     }
   }
 
@@ -115,26 +126,8 @@ public class Preferences {
     mPrefs.edit()
           .putInt(Keys.last_places.name(), places)
           .putLong(Keys.last_update.name(), lastUpdate)
-          .putLong(Keys.last_fetch.name(), System.currentTimeMillis())
+          .putLong(Keys.last_fetch.name(),System.currentTimeMillis())
           .putString(Keys.last_data.name(), data)
-          .commit();
-  }
-
-  public void setClickAction(ClickAction action) {
-    mPrefs.edit()
-          .putString(Keys.click_action.name(), action.name())
-          .commit();
-  }
-
-  public void setUpdatePolicy(UpdatePolicy policy) {
-    mPrefs.edit()
-          .putString(Keys.update_policy.name(), policy.name())
-          .commit();
-  }
-
-  public void setTimeFormat(TimeFormat format) {
-    mPrefs.edit()
-          .putString(Keys.time_format.name(), format.name())
           .commit();
   }
 }

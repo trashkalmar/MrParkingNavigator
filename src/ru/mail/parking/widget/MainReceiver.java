@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import ru.mail.parking.widget.ui.DataDetailsActivity;
-import ru.mail.parking.widget.ui.SettingsActivity;
 
 public class MainReceiver extends BroadcastReceiver {
   public static final String ACTION_CLICK = "ru.mail.parking.widget.CLICK";
@@ -15,11 +14,6 @@ public class MainReceiver extends BroadcastReceiver {
   public void onReceive(Context context, Intent intent) {
     if (ACTION_CLICK.equals(intent.getAction())) {
       switch (App.prefs().getClickAction()) {
-        case settings:
-          context.startActivity(new Intent(context, SettingsActivity.class)
-                                   .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-          break;
-
         case update:
           SmartUpdate.force();
           break;

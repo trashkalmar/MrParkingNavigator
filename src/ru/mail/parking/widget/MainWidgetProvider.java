@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
 import android.widget.RemoteViews;
 
 import static ru.mail.parking.widget.App.app;
@@ -28,21 +27,21 @@ public class MainWidgetProvider extends AppWidgetProvider {
     update(context, wmgr, appWidgetIds);
   }
 
-  public static void update(Context context, AppWidgetManager wmgr, int[] appWidgetIds) {
+  private static void update(Context context, AppWidgetManager wmgr, int[] appWidgetIds) {
     int free = App.prefs().getLastPlaces();
     String freeText = (free == -1 ? "???" : String.valueOf(free));
 
     TimeFormat tf = App.prefs().getTimeFormat();
-    boolean show = (tf != TimeFormat.none);
+    boolean showTime = (tf != TimeFormat.none);
 
-    String when = (show ? App.prefs().getLastRefresh() : "");
+    String when = (showTime ? App.prefs().getLastRefresh() : "");
 
     for (int id: appWidgetIds) {
-      RemoteViews frame = new RemoteViews(context.getPackageName(), R.layout.widget);
+      RemoteViews frame = new RemoteViews(context.getPackageName(), showTime ? R.layout.widget
+                                                                             : R.layout.widget_counter_only);
       frame.setTextViewText(R.id.count, freeText);
 
-      frame.setViewVisibility(R.id.updated, show ? View.VISIBLE : View.GONE);
-      if (show)
+      if (showTime)
         frame.setTextViewText(R.id.updated, when);
 
       Intent it = new Intent(context, MainReceiver.class);

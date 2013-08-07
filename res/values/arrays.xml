@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="prefs_config_update_mode_default">auto</string>
+  <string-array name="prefs_config_update_modes_keys">
+    <item>manual</item>
+    <item>auto</item>
+    <item>smart</item>
+  </string-array>
+
+  <string-array name="prefs_config_update_modes">
+    <item>@string/prefs_config_update_manual</item>
+    <item>@string/prefs_config_update_auto</item>
+    <item>@string/prefs_config_update_smart</item>
+  </string-array>
+
+
+  <string name="prefs_config_click_action_default">details</string>
+  <string-array name="prefs_config_click_actions_keys">
+    <item>update</item>
+    <item>details</item>
+  </string-array>
+
+  <string-array name="prefs_config_click_actions">
+    <item>@string/prefs_config_click_update</item>
+    <item>@string/prefs_config_click_details</item>
+  </string-array>
+
+
+  <string name="prefs_config_time_format_default">full</string>
+  <string-array name="prefs_config_time_formats_keys">
+    <item>none</item>
+    <item>time</item>
+    <item>full</item>
+  </string-array>
+
+  <string-array name="prefs_config_time_formats">
+    <item>@string/prefs_config_time_format_none</item>
+    <item>@string/prefs_config_time_format_time</item>
+    <item>@string/prefs_config_time_format_date</item>
+  </string-array>
+</resources>

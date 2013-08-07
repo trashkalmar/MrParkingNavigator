@@ -34,13 +34,14 @@ public class UpdateService extends IntentService {
 
   private void updateData() {
     sIsUpdating = true;
-    PowerManager.WakeLock wl = ((PowerManager)getSystemService(POWER_SERVICE)).newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, SERVICE_NAME);
-
+    PowerManager.WakeLock wl = ((PowerManager)getSystemService(POWER_SERVICE))
+                                 .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, SERVICE_NAME);
     try {
       wl.acquire();
 
       URL url = new URL(DATA_URL);
       HttpURLConnection cn = (HttpURLConnection)url.openConnection();
+      cn.setReadTimeout(10000);
       cn.setDoInput(true);
 
       InputStream is = null;
@@ -81,8 +82,8 @@ public class UpdateService extends IntentService {
     updateData();
   }
 
-  public static void start() {
-    if (!sIsUpdating)
+  public static void start(boolean force) {
+    if (force || !sIsUpdating)
       App.app().startService(new Intent(App.app(), UpdateService.class));
   }
 }

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="build_date">07-AUG-2013</string>
-
   <string name="app_name">Mail.Ru Parking</string>
   <string name="time_format">H:mm:ss</string>
   <string name="time_format_date">(MM/dd)</string>
@@ -18,10 +16,14 @@
   <string name="prefs_config_update_auto">Auto</string>
   <string name="prefs_config_update_smart">Smart</string>
 
-  <string name="prefs_config_click_title">Click on widget</string>
-  <string name="prefs_config_click_none">Do nothing</string>
+  <string name="prefs_config_click_title">Tap on widget</string>
   <string name="prefs_config_click_update">Refresh data</string>
-  <string name="prefs_config_click_settings">Show settings</string>
+  <string name="prefs_config_click_details">Show details</string>
+
+  <string name="prefs_config_time_format_title">Date format</string>
+  <string name="prefs_config_time_format_none">None</string>
+  <string name="prefs_config_time_format_time">Time</string>
+  <string name="prefs_config_time_format_date">Date and time</string>
 
   <!-- Data details -->
   <string name="info_last_title">Last fetched data</string>
@@ -38,4 +40,10 @@
   <string name="about_author">Author: Alexander Marchuk\na.marchuk@corp.mail.ru or kalmar.trash@mail.ru</string>
   <string name="about_full_page">Full page: p.corp.mail.ru</string>
   <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingWidget</string>
+
+  <!-- Non-translatable strings -->
+  <string name="build_date">07-AUG-2013</string>
+  <string name="prefs_key_update_mode">update_policy</string>
+  <string name="prefs_key_click_action">click_action</string>
+  <string name="prefs_key_time_format">time_format</string>
 </resources>

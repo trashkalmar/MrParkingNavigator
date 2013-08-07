@@ -7,13 +7,13 @@ import android.widget.TextView;
 
 import ru.mail.parking.widget.App;
 import ru.mail.parking.widget.R;
+import ru.mail.parking.widget.SmartUpdate;
 
 public class DataDetailsActivity extends Activity {
   public void onCreate(Bundle state) {
     super.onCreate(state);
 
     setContentView(R.layout.data_details);
-
     ((TextView)findViewById(R.id.fetched))
       .setText(getString(R.string.info_last_fetch, App.prefs().getLastFetch()));
 
@@ -29,7 +29,7 @@ public class DataDetailsActivity extends Activity {
     findViewById(R.id.refresh_now).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        // TODO: Refresh button
+        SmartUpdate.force();
       }
     });
   }
