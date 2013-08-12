@@ -19,6 +19,9 @@
   <string name="prefs_config_click_title">Tap on widget</string>
   <string name="prefs_config_click_update">Refresh data</string>
   <string name="prefs_config_click_details">Show details</string>
+  <string name="prefs_config_click_settings">Settings</string>
+
+  <string name="prefs_config_doubletap_title">Double tap on widget</string>
 
   <string name="prefs_config_time_format_title">Date format</string>
   <string name="prefs_config_time_format_none">None</string>
@@ -42,8 +45,9 @@
   <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingWidget</string>
 
   <!-- Non-translatable strings -->
-  <string name="build_date">07-AUG-2013</string>
+  <string name="build_date">13-AUG-2013</string>
   <string name="prefs_key_update_mode">update_policy</string>
   <string name="prefs_key_click_action">click_action</string>
+  <string name="prefs_key_doubletap_action">doubletap_action</string>
   <string name="prefs_key_time_format">time_format</string>
 </resources>

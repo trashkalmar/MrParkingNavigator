@@ -19,6 +19,9 @@
   <string name="prefs_config_click_title">Тап по виджету</string>
   <string name="prefs_config_click_update">Обновить данные</string>
   <string name="prefs_config_click_details">Показать детали</string>
+  <string name="prefs_config_click_settings">Настройки</string>
+
+  <string name="prefs_config_doubletap_title">Двойной тап по виджету</string>
 
   <string name="prefs_config_time_format_title">Формат даты</string>
   <string name="prefs_config_time_format_none">Не показывать</string>

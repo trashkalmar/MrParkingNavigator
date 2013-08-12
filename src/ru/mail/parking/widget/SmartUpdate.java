@@ -6,15 +6,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import ru.mail.parking.widget.utils.NetworkAwaiter;
+
+import static ru.mail.parking.widget.App.app;
+
 public final class SmartUpdate {
   private static AlarmManager mManager;
+
+  static {
+    mManager = (AlarmManager)app().getSystemService(Context.ALARM_SERVICE);
+  }
+
+  private SmartUpdate() {}
+
 
   public enum Policy {
     auto {
       @Override
       public void schedule() {
-        PendingIntent pi = createActionIntent();
-        mManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 60 * 60000, pi);
+        //schedule(60 * 60000);
+        schedule(6000);
       }
     },
 
@@ -37,32 +48,42 @@ public final class SmartUpdate {
 
     public static Policy getDefault() {
       if (sDefault == null)
-        sDefault = valueOf(App.app().getString(R.string.prefs_config_update_mode_default));
+        sDefault = valueOf(app().getString(R.string.prefs_config_update_mode_default));
 
       return sDefault;
     }
 
+    protected void schedule(long delay) {
+      mManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + delay, createActionIntent());
+    }
 
     public abstract void schedule();
   }
 
 
-  static {
-    mManager = (AlarmManager)App.app().getSystemService(Context.ALARM_SERVICE);
-  }
-
-  private SmartUpdate() {}
-
   private static PendingIntent createActionIntent() {
-    Intent it = new Intent(App.app(), MainReceiver.class)
+    Intent it = new Intent(app(), MainReceiver.class)
                    .setAction(MainReceiver.ACTION_UPDATE);
 
-    return PendingIntent.getBroadcast(App.app(), 0, it, PendingIntent.FLAG_CANCEL_CURRENT);
+    return PendingIntent.getBroadcast(app(), 0, it, PendingIntent.FLAG_CANCEL_CURRENT);
   }
 
+  private static void execute(final boolean force) {
+    NetworkAwaiter.getInstance().start(SmartUpdate.class.getSimpleName(), new Runnable() {
+      @Override
+      public void run() {
+        UpdateService.start(force);
+      }
+    });
+  }
+
+  private static void schedule() {
+    App.prefs().getUpdatePolicy().schedule();
+  }
 
   public static void force() {
-    UpdateService.start(true);
+    abort();
+    execute(true);
     schedule();
   }
 
@@ -70,18 +91,21 @@ public final class SmartUpdate {
     PendingIntent pi = createActionIntent();
     mManager.cancel(pi);
     pi.cancel();
+
+    NetworkAwaiter.getInstance().cancelAll();
   }
 
-  public static void schedule() {
-    App.prefs().getUpdatePolicy().schedule();
+  public static void restart() {
+    abort();
+    schedule();
   }
 
   public static void onAlarm() {
-    UpdateService.start(false);
+    execute(false);
     schedule();
   }
 
   public static void onTimeChanged() {
-    schedule();
+    restart();
   }
 }

@@ -14,15 +14,18 @@
   </string-array>
 
 
-  <string name="prefs_config_click_action_default">details</string>
+  <string name="prefs_config_click_action_default">update</string>
+  <string name="prefs_config_doubletap_action_default">details</string>
   <string-array name="prefs_config_click_actions_keys">
     <item>update</item>
     <item>details</item>
+    <item>settings</item>
   </string-array>
 
   <string-array name="prefs_config_click_actions">
     <item>@string/prefs_config_click_update</item>
     <item>@string/prefs_config_click_details</item>
+    <item>@string/prefs_config_click_settings</item>
   </string-array>
 
 

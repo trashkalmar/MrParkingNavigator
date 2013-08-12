@@ -14,6 +14,12 @@
                     android:entries="@array/prefs_config_click_actions"
                     android:defaultValue="@string/prefs_config_click_action_default"/>
 
+    <ListPreference android:title="@string/prefs_config_doubletap_title"
+                    android:key="@string/prefs_key_doubletap_action"
+                    android:entryValues="@array/prefs_config_click_actions_keys"
+                    android:entries="@array/prefs_config_click_actions"
+                    android:defaultValue="@string/prefs_config_doubletap_action_default"/>
+
     <ListPreference android:title="@string/prefs_config_time_format_title"
                     android:key="@string/prefs_key_time_format"
                     android:entryValues="@array/prefs_config_time_formats_keys"

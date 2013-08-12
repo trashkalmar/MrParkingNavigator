@@ -14,11 +14,13 @@ import static ru.mail.parking.widget.Preferences.TimeFormat;
 public class MainWidgetProvider extends AppWidgetProvider {
   @Override
   public void onEnabled(Context context) {
+    app().watchNetwork(true);
     SmartUpdate.force();
   }
 
   @Override
   public void onDisabled(Context context) {
+    app().watchNetwork(false);
     SmartUpdate.abort();
   }
 
@@ -45,7 +47,7 @@ public class MainWidgetProvider extends AppWidgetProvider {
         frame.setTextViewText(R.id.updated, when);
 
       Intent it = new Intent(context, MainReceiver.class);
-      it.setAction(MainReceiver.ACTION_CLICK);
+      it.setAction(MainReceiver.ACTION_TAP);
 
       PendingIntent pi = PendingIntent.getBroadcast(context, 0, it, PendingIntent.FLAG_CANCEL_CURRENT);
       frame.setOnClickPendingIntent(R.id.frame, pi);
@@ -53,13 +55,19 @@ public class MainWidgetProvider extends AppWidgetProvider {
     }
   }
 
+  public static int[] getWidgetIds() {
+    AppWidgetManager mgr = AppWidgetManager.getInstance(app());
+    if (mgr == null)
+      return new int[0];
+
+    return mgr.getAppWidgetIds(new ComponentName(app().getPackageName(),
+                                                 app().getPackageName() + "." +
+                                                 MainWidgetProvider.class.getSimpleName()));
+  }
+
   public static void updateAll() {
     AppWidgetManager mgr = AppWidgetManager.getInstance(app());
-    if (mgr == null) return;
-
-    int[] ids = mgr.getAppWidgetIds(new ComponentName(app().getPackageName(),
-                                                      app().getPackageName() + "." +
-                                                      MainWidgetProvider.class.getSimpleName()));
-    update(app(), mgr, ids);
+    if (mgr != null)
+      update(app(), mgr, getWidgetIds());
   }
 }
