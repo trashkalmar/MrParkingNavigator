@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import java.util.Calendar;
+
 import ru.mail.parking.widget.utils.NetworkAwaiter;
 
+import static java.util.Calendar.*;
 import static ru.mail.parking.widget.App.app;
 
 public final class SmartUpdate {
@@ -24,8 +27,7 @@ public final class SmartUpdate {
     auto {
       @Override
       public void schedule() {
-        //schedule(60 * 60000);
-        schedule(6000);
+        schedule(REGULAR_INTERVAL);
       }
     },
 
@@ -37,12 +39,58 @@ public final class SmartUpdate {
     },
 
     smart {
+      private static final int WORKDAY_HOT_START = 9;              // Hour at which the `hot` period starts…
+      private static final int WORKDAY_HOT_END = 12;               // …and ends
+      private static final int WORKDAY_HOT_INTERVAL = 15 * 60000;  // Update interval within `hot` period
+      private static final int WORKDAY_INTERVAL = REGULAR_INTERVAL;
+
+      private Calendar newZero(Calendar c) {
+        Calendar res = (Calendar)c.clone();
+        res.set(HOUR_OF_DAY, 0);
+        res.set(MINUTE, 0);
+        res.set(SECOND, 0);
+
+        return res;
+      }
+
       @Override
       public void schedule() {
-        // TODO
+        final Calendar now = getInstance();
+        Calendar next = newZero(now);
+        int weekday = now.get(DAY_OF_WEEK);
+        int hour = now.get(HOUR_OF_DAY);
+
+        // Holiday?
+        if (weekday == SATURDAY || weekday == SUNDAY) {
+          next.add(DAY_OF_YEAR, 1);
+          if (next.get(DAY_OF_WEEK) == SUNDAY)
+            next.add(DAY_OF_YEAR, 1);
+
+          next.add(HOUR_OF_DAY, WORKDAY_HOT_START);
+          schedule(next.getTimeInMillis() - now.getTimeInMillis());
+          return;
+        }
+
+        // Before `hot` time?
+        if (hour < WORKDAY_HOT_START) {
+          next.set(HOUR_OF_DAY, WORKDAY_HOT_START);
+          schedule(next.getTimeInMillis() - now.getTimeInMillis());
+          return;
+        }
+
+        // Within `hot` time?
+        if (hour < WORKDAY_HOT_END) {
+          schedule(WORKDAY_HOT_INTERVAL);
+          return;
+        }
+
+        // Past `hot time?`
+        schedule(WORKDAY_INTERVAL);
       }
     };
 
+
+    private static final int REGULAR_INTERVAL = 60 * 60000;
 
     private static Policy sDefault;
 
@@ -73,6 +121,7 @@ public final class SmartUpdate {
       @Override
       public void run() {
         UpdateService.start(force);
+        schedule();
       }
     });
   }
@@ -84,7 +133,6 @@ public final class SmartUpdate {
   public static void force() {
     abort();
     execute(true);
-    schedule();
   }
 
   public static void abort() {
@@ -102,7 +150,6 @@ public final class SmartUpdate {
 
   public static void onAlarm() {
     execute(false);
-    schedule();
   }
 
   public static void onTimeChanged() {

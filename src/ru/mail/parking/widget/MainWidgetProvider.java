@@ -14,14 +14,12 @@ import static ru.mail.parking.widget.Preferences.TimeFormat;
 public class MainWidgetProvider extends AppWidgetProvider {
   @Override
   public void onEnabled(Context context) {
-    app().watchNetwork(true);
-    SmartUpdate.force();
+    app().start();
   }
 
   @Override
   public void onDisabled(Context context) {
-    app().watchNetwork(false);
-    SmartUpdate.abort();
+    app().stop();
   }
 
   @Override

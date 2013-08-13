@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="prefs_config_update_mode_default">auto</string>
+  <string name="prefs_config_update_mode_default">smart</string>
   <string-array name="prefs_config_update_modes_keys">
     <item>manual</item>
     <item>auto</item>

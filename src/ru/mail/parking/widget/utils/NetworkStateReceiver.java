@@ -21,12 +21,8 @@ public class NetworkStateReceiver extends BroadcastReceiver {
   private static final Runnable sTrigger = new Runnable() {
     @Override
     public void run() {
-      if (sListener == null)
-        return;
-
-      ConnectivityManager cm = (ConnectivityManager)app().getSystemService(Context.CONNECTIVITY_SERVICE);
-      NetworkInfo ni = cm.getActiveNetworkInfo();
-      sListener.onNetworkChanged(ni != null && ni.isConnected());
+      if (sListener != null)
+        sListener.onNetworkChanged(isNetworkAvailable());
     }
   };
 
@@ -49,6 +45,13 @@ public class NetworkStateReceiver extends BroadcastReceiver {
     sListener = null;
   }
 
+  public static boolean isNetworkAvailable() {
+    ConnectivityManager cm = (ConnectivityManager)app().getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo ni = cm.getActiveNetworkInfo();
+    return (ni != null && ni.isConnected());
+  }
+
+  @Override
   public void onReceive(Context context, Intent intent) {
     Utils.cancelUiTask(sTrigger);
     Utils.runUiLater(sTrigger, TRIGGER_DELAY);

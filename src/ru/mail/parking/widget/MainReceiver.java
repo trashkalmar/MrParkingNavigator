@@ -45,12 +45,6 @@ public class MainReceiver extends BroadcastReceiver {
   }
 
   public void onReceive(Context context, Intent intent) {
-    if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-      if (MainWidgetProvider.getWidgetIds().length != 0)
-        SmartUpdate.force();
-    } else
-
-
     if (ACTION_TAP.equals(intent.getAction())) {
       long now = System.currentTimeMillis();
       long diff = now - sLastTap;

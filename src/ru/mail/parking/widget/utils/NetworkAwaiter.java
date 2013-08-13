@@ -14,7 +14,7 @@ public final class NetworkAwaiter {
   private NetworkAwaiter() {}
 
 
-  private boolean mNetworkAvailable;
+  private boolean mNetworkAvailable = NetworkStateReceiver.isNetworkAvailable();
   private final Map<String, Runnable> mTasks = new HashMap<String, Runnable>();
   private final Set<String> mPending = new HashSet<String>();
 

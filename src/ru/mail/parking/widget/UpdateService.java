@@ -72,7 +72,7 @@ public class UpdateService extends IntentService {
     } finally {
       sIsUpdating = false;
 
-      if (wl.isHeld())
+      if (wl != null && wl.isHeld())
         wl.release();
     }
   }

@@ -10,11 +10,24 @@ public class App extends Application
   private static App sInstance;
   private static Preferences sPrefs;
 
+
+  private void watchNetwork(boolean watch) {
+    if (watch)
+      NetworkStateReceiver.register(this);
+    else {
+      NetworkAwaiter.getInstance().cancelAll();
+      NetworkStateReceiver.unregister();
+    }
+  }
+
   @Override
   public void onCreate() {
     super.onCreate();
     sInstance = this;
     sPrefs = new Preferences();
+
+    if (MainWidgetProvider.getWidgetIds().length != 0)
+      start();
   }
 
   public static App app() {
@@ -25,17 +38,18 @@ public class App extends Application
     return sPrefs;
   }
 
-  public void watchNetwork(boolean watch) {
-    if (watch)
-      NetworkStateReceiver.register(this);
-    else {
-      NetworkAwaiter.getInstance().cancelAll();
-      NetworkStateReceiver.unregister();
-    }
-  }
-
   @Override
   public void onNetworkChanged(boolean hasNetwork) {
     NetworkAwaiter.getInstance().onNetworkChanged(hasNetwork);
+  }
+
+  public void start() {
+    watchNetwork(true);
+    SmartUpdate.force();
+  }
+
+  public void stop() {
+    watchNetwork(false);
+    SmartUpdate.abort();
   }
 }
