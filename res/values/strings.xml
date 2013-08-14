@@ -45,7 +45,7 @@
   <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingWidget</string>
 
   <!-- Non-translatable strings -->
-  <string name="build_date">13-AUG-2013</string>
+  <string name="build_date">14-AUG-2013</string>
   <string name="prefs_key_update_mode">update_policy</string>
   <string name="prefs_key_click_action">click_action</string>
   <string name="prefs_key_doubletap_action">doubletap_action</string>

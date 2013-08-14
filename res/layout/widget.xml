@@ -3,8 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/frame"
               android:orientation="vertical"
-              android:layout_width="64dp"
-              android:layout_height="64dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
               android:gravity="center_horizontal"
               android:background="@drawable/widget_bg">
   <TextView android:id="@+id/count"
@@ -14,10 +14,13 @@
 
   <TextView android:id="@+id/updated"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="@string/unknown"
-            android:textSize="7sp"
+            android:textSize="10sp"
             android:textColor="@android:color/white"
-            android:gravity="center_horizontal"
-            android:fontFamily="sans-serif-thin"/>
+            android:gravity="bottom"
+            android:fontFamily="sans-serif-thin"
+            android:singleLine="true"
+            android:ellipsize="none"/>
 </LinearLayout>
