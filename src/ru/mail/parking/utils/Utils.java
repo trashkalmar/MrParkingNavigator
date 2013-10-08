@@ -1,21 +1,30 @@
-package ru.mail.parking.widget.utils;
+package ru.mail.parking.utils;
 
 import android.os.Handler;
 import android.os.Looper;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import ru.mail.parking.widget.App;
-import ru.mail.parking.widget.Preferences;
-import ru.mail.parking.widget.R;
+import ru.mail.parking.App;
+import ru.mail.parking.Preferences;
+import ru.mail.parking.R;
 
 public final class Utils {
+  public static final String EXTRA_PLACE = "place";
+
   private static Handler sUiHandler = new Handler(Looper.getMainLooper());
+  public static final float sScreenDensity = App.app().getResources().getDisplayMetrics().density;
 
   private Utils() {}
 
+
+  public static float dp(float v) {
+    return (float)(v * sScreenDensity + 0.5);
+  }
 
   public static String formatDate(Calendar c, Preferences.TimeFormat format) {
     SimpleDateFormat sdf = new SimpleDateFormat(format.getFormatString());
@@ -47,5 +56,14 @@ public final class Utils {
 
   public static void cancelUiTask(Runnable task) {
     sUiHandler.removeCallbacks(task);
+  }
+
+  public static void safeClose(Closeable obj) {
+    if (obj == null)
+      return;
+
+    try {
+      obj.close();
+    } catch (IOException ignored) {}
   }
 }

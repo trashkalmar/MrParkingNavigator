@@ -4,11 +4,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import ru.mail.parking.widget.ui.DataDetailsActivity;
-import ru.mail.parking.widget.ui.SettingsActivity;
-import ru.mail.parking.widget.utils.Utils;
+import ru.mail.parking.Preferences;
+import ru.mail.parking.ui.DataDetailsActivity;
+import ru.mail.parking.ui.EnterPlaceActivity;
+import ru.mail.parking.ui.NavigatorActivity;
+import ru.mail.parking.ui.SettingsActivity;
+import ru.mail.parking.utils.Utils;
 
-import static ru.mail.parking.widget.App.app;
+import static ru.mail.parking.App.app;
+import static ru.mail.parking.App.prefs;
 
 public class MainReceiver extends BroadcastReceiver {
   public static final String ACTION_TAP = "ru.mail.parking.widget.TAP";
@@ -21,13 +25,18 @@ public class MainReceiver extends BroadcastReceiver {
   private static final Runnable sTapRunner = new Runnable() {
     @Override
     public void run() {
-      executeClickAction(App.prefs().getClickAction());
+      executeClickAction(prefs().getClickAction());
     }
   };
 
 
   private static void executeClickAction(Preferences.ClickAction action) {
     switch (action) {
+      case navigator:
+        app().startActivity(new Intent(app(), EnterPlaceActivity.class)
+                               .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        break;
+
       case update:
         SmartUpdate.force();
         break;
@@ -45,19 +54,19 @@ public class MainReceiver extends BroadcastReceiver {
   }
 
   public void onReceive(Context context, Intent intent) {
-    if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-      if (MainWidgetProvider.getWidgetIds().length != 0)
-        SmartUpdate.force();
-    } else
-
-
     if (ACTION_TAP.equals(intent.getAction())) {
+      if (prefs().getStoredPlace() != null) {
+        app().startActivity(new Intent(app(), NavigatorActivity.class)
+                               .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        return;
+      }
+
       long now = System.currentTimeMillis();
       long diff = now - sLastTap;
 
       if (diff > 0 && diff < TAP_DELAY) {
         Utils.cancelUiTask(sTapRunner);
-        executeClickAction(App.prefs().getDoubletapAction());
+        executeClickAction(prefs().getDoubletapAction());
         return;
       }
 

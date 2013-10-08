@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="prefs_config_update_mode_default">auto</string>
+  <string name="prefs_config_update_mode_default">smart</string>
   <string-array name="prefs_config_update_modes_keys">
     <item>manual</item>
     <item>auto</item>
@@ -14,15 +14,17 @@
   </string-array>
 
 
-  <string name="prefs_config_click_action_default">update</string>
-  <string name="prefs_config_doubletap_action_default">details</string>
+  <string name="prefs_config_click_action_default">navigator</string>
+  <string name="prefs_config_doubletap_action_default">update</string>
   <string-array name="prefs_config_click_actions_keys">
+    <item>navigator</item>
     <item>update</item>
     <item>details</item>
     <item>settings</item>
   </string-array>
 
   <string-array name="prefs_config_click_actions">
+    <item>@string/prefs_config_click_navigator</item>
     <item>@string/prefs_config_click_update</item>
     <item>@string/prefs_config_click_details</item>
     <item>@string/prefs_config_click_settings</item>

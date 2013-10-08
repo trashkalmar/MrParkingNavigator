@@ -6,22 +6,25 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.widget.RemoteViews;
 
-import static ru.mail.parking.widget.App.app;
-import static ru.mail.parking.widget.Preferences.TimeFormat;
+import ru.mail.parking.R;
+import ru.mail.parking.floors.Place;
+
+import static ru.mail.parking.App.app;
+import static ru.mail.parking.App.prefs;
+import static ru.mail.parking.Preferences.TimeFormat;
 
 public class MainWidgetProvider extends AppWidgetProvider {
   @Override
   public void onEnabled(Context context) {
-    app().watchNetwork(true);
-    SmartUpdate.force();
+    app().start();
   }
 
   @Override
   public void onDisabled(Context context) {
-    app().watchNetwork(false);
-    SmartUpdate.abort();
+    app().stop();
   }
 
   @Override
@@ -30,21 +33,35 @@ public class MainWidgetProvider extends AppWidgetProvider {
   }
 
   private static void update(Context context, AppWidgetManager wmgr, int[] appWidgetIds) {
-    int free = App.prefs().getLastPlaces();
-    String freeText = (free == -1 ? "???" : String.valueOf(free));
+    Place place = prefs().getStoredPlace();
 
-    TimeFormat tf = App.prefs().getTimeFormat();
-    boolean showTime = (tf != TimeFormat.none);
+    int resId;
+    String count;
+    String info = "";
 
-    String when = (showTime ? App.prefs().getLastRefresh() : "");
+    if (place == null) {
+      int free = prefs().getLastPlaces();
+      count = (free == Place.INVALID ? "???" : String.valueOf(free));
+
+      TimeFormat tf = prefs().getTimeFormat();
+      boolean showTime = (tf != TimeFormat.none);
+
+      resId = showTime ? R.layout.widget
+                       : R.layout.widget_counter_only;
+      if (showTime)
+        info = prefs().getLastRefresh();
+    } else {
+      resId = R.layout.widget_place;
+      count = String.valueOf(place.getNumber());
+      info = app().getString(R.string.floor_format, place.getFloor(), place.getSide().name());
+    }
+
 
     for (int id: appWidgetIds) {
-      RemoteViews frame = new RemoteViews(context.getPackageName(), showTime ? R.layout.widget
-                                                                             : R.layout.widget_counter_only);
-      frame.setTextViewText(R.id.count, freeText);
-
-      if (showTime)
-        frame.setTextViewText(R.id.updated, when);
+      RemoteViews frame = new RemoteViews(context.getPackageName(), resId);
+      frame.setTextViewText(R.id.count, count);
+      if (!TextUtils.isEmpty(info))
+        frame.setTextViewText(R.id.info, info);
 
       Intent it = new Intent(context, MainReceiver.class);
       it.setAction(MainReceiver.ACTION_TAP);
@@ -60,9 +77,7 @@ public class MainWidgetProvider extends AppWidgetProvider {
     if (mgr == null)
       return new int[0];
 
-    return mgr.getAppWidgetIds(new ComponentName(app().getPackageName(),
-                                                 app().getPackageName() + "." +
-                                                 MainWidgetProvider.class.getSimpleName()));
+    return mgr.getAppWidgetIds(new ComponentName(app().getPackageName(), MainWidgetProvider.class.getName()));
   }
 
   public static void updateAll() {

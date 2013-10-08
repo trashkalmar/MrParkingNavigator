@@ -7,13 +7,34 @@
     <item name="android:gravity">center_horizontal</item>
   </style>
 
-  <style name="counter_label">
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:gravity">center_horizontal</item>
+  <style name="counter_label" parent="def_label">
+    <item name="android:padding">0dp</item>
     <item name="android:textColor">#FFFAA001</item>
-    <item name="android:textSize">32sp</item>
+    <item name="android:textSize">40sp</item>
     <item name="android:fontFamily">sans-serif</item>
-    <item name="android:background">@drawable/widget_bg</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:ellipsize">none</item>
+  </style>
+
+  <style name="place_label" parent="counter_label">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">0dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textColor">#FFE01010</item>
+    <item name="android:textSize">38sp</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:ellipsize">none</item>
+  </style>
+
+  <style name="button">
+    <item name="android:layout_height">60dp</item>
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textSize">40sp</item>
+    <item name="android:textColor">#FF2491BE</item>
+    <item name="android:fontFamily">sans-serif</item>
+    <item name="android:background">@drawable/clickable</item>
   </style>
 </resources>

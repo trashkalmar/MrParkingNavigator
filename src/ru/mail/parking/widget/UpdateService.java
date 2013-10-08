@@ -17,6 +17,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import ru.mail.parking.App;
+import ru.mail.parking.utils.Utils;
+
 public class UpdateService extends IntentService {
   private static final String SERVICE_NAME = "Mail.Ru Parking Monitor update service";
 
@@ -52,11 +55,7 @@ public class UpdateService extends IntentService {
         line = buffRead.readLine();
       } finally {
         cn.disconnect();
-
-        if (is != null)
-          try {
-            is.close();
-          } catch (IOException ignored) {}
+        Utils.safeClose(is);
       }
 
       JSONObject jo = new JSONObject(line);
@@ -72,7 +71,7 @@ public class UpdateService extends IntentService {
     } finally {
       sIsUpdating = false;
 
-      if (wl.isHeld())
+      if (wl != null && wl.isHeld())
         wl.release();
     }
   }
