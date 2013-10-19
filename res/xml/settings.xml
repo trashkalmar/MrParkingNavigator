@@ -30,14 +30,14 @@
   <PreferenceCategory android:title="@string/prefs_info">
     <PreferenceScreen android:title="@string/prefs_info_about">
       <intent android:action="android.intent.action.VIEW"
-              android:targetPackage="ru.mail.parking.widget"
-              android:targetClass="ru.mail.parking.widget.ui.AboutActivity"/>
+              android:targetPackage="ru.mail.parking"
+              android:targetClass="ru.mail.parking.ui.AboutActivity"/>
     </PreferenceScreen>
 
     <PreferenceScreen android:title="@string/prefs_info_details">
       <intent android:action="android.intent.action.VIEW"
-              android:targetPackage="ru.mail.parking.widget"
-              android:targetClass="ru.mail.parking.widget.ui.DataDetailsActivity"/>
+              android:targetPackage="ru.mail.parking"
+              android:targetClass="ru.mail.parking.ui.DataDetailsActivity"/>
     </PreferenceScreen>
   </PreferenceCategory>
 </PreferenceScreen>

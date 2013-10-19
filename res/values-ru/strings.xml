@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Mail.Ru парковка</string>
+  <string name="app_name">Парковка Mail.Ru</string>
   <string name="time_format">HH:mm:ss</string>
   <string name="time_format_date">(dd/MM)</string>
   <string name="unknown">Неизвестно</string>
@@ -17,6 +17,7 @@
   <string name="prefs_config_update_smart">Интеллектуальный</string>
 
   <string name="prefs_config_click_title">Тап по виджету</string>
+  <string name="prefs_config_click_navigator">Навигатор</string>
   <string name="prefs_config_click_update">Обновить данные</string>
   <string name="prefs_config_click_details">Показать детали</string>
   <string name="prefs_config_click_settings">Настройки</string>
@@ -27,6 +28,13 @@
   <string name="prefs_config_time_format_none">Не показывать</string>
   <string name="prefs_config_time_format_time">Время</string>
   <string name="prefs_config_time_format_date">Дата и время</string>
+
+  <!-- Enter place -->
+  <string name="floor_format">-%1$d этаж\nЛифт %2$s</string>
+  <string name="floor_settings">Настройки</string>
+  <string name="floor_ok">ОК</string>
+  <string name="floor_invalid">Место не найдено</string>
+  <string name="floor_leave">Уехать</string>
 
   <!-- Data details -->
   <string name="info_last_title">Последние загруженные данные</string>
@@ -42,5 +50,5 @@
   <string name="about_version">Версия: %s</string>
   <string name="about_author">Автор: Александр Марчук\na.marchuk@corp.mail.ru или kalmar.trash@mail.ru</string>
   <string name="about_full_page">Полная страница: p.corp.mail.ru</string>
-  <string name="about_github">Исходный код: www.github.com/trashkalmar/MrParkingWidget</string>
+  <string name="about_github">Исходный код: www.github.com/trashkalmar/MrParkingNavigator</string>
 </resources>

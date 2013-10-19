@@ -1,4 +1,4 @@
-package ru.mail.parking.widget.ui;
+package ru.mail.parking.ui;
 
 import android.app.Activity;
 import android.content.pm.PackageInfo;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import ru.mail.parking.widget.R;
+import ru.mail.parking.R;
 
 public class AboutActivity extends Activity {
   public void onCreate(Bundle state) {

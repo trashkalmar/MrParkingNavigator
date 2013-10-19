@@ -17,6 +17,7 @@
   <string name="prefs_config_update_smart">Smart</string>
 
   <string name="prefs_config_click_title">Tap on widget</string>
+  <string name="prefs_config_click_navigator">Show navigator</string>
   <string name="prefs_config_click_update">Refresh data</string>
   <string name="prefs_config_click_details">Show details</string>
   <string name="prefs_config_click_settings">Settings</string>
@@ -27,6 +28,13 @@
   <string name="prefs_config_time_format_none">None</string>
   <string name="prefs_config_time_format_time">Time</string>
   <string name="prefs_config_time_format_date">Date and time</string>
+
+  <!-- Enter place -->
+  <string name="floor_format">Floor -%1$d\nSide %2$s</string>
+  <string name="floor_settings">Settings</string>
+  <string name="floor_ok">OK</string>
+  <string name="floor_invalid">Place not found</string>
+  <string name="floor_leave">Leave</string>
 
   <!-- Data details -->
   <string name="info_last_title">Last fetched data</string>
@@ -42,10 +50,10 @@
   <string name="about_version">Version: %s</string>
   <string name="about_author">Author: Alexander Marchuk\na.marchuk@corp.mail.ru or kalmar.trash@mail.ru</string>
   <string name="about_full_page">Full page: p.corp.mail.ru</string>
-  <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingWidget</string>
+  <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingNavigator</string>
 
   <!-- Non-translatable strings -->
-  <string name="build_date">13-AUG-2013</string>
+  <string name="build_date">09-OCT-2013</string>
   <string name="prefs_key_update_mode">update_policy</string>
   <string name="prefs_key_click_action">click_action</string>
   <string name="prefs_key_doubletap_action">doubletap_action</string>
