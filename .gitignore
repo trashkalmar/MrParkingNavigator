@@ -1,5 +1,4 @@
 # built application files
-*.apk
 *.ap_
 
 # files for the dex VM
@@ -20,3 +19,4 @@ local.properties
 .project
 _work/
 .idea/
+out/
