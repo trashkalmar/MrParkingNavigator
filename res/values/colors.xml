@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="counter">#FFFAA001</color>
+  <color name="place_counter">#FFE01010</color>
+  <color name="place_info">#FF0000FF</color>
+
+  <color name="enter_place_button_text">#FF2491BE</color>
+
+  <color name="free_gradient_start">#FF366899</color>
+  <color name="free_gradient_end">#FF1A4076</color>
+  <color name="place_gradient_start">#FFB4B4E0</color>
+  <color name="place_gradient_end">#FFFFFFFF</color>
+  <color name="widget_stroke">#FF0F2544</color>
+
+  <color name="sw_button_divider">#FFB4B4E0</color>
+  <color name="sw_button_text">#FFFFFFFF</color>
+</resources>

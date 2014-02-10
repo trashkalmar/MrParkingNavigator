@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="45px"
+              android:orientation="horizontal"
+              android:background="@android:color/black">
+  <TextView android:id="@+id/left"
+            style="@style/sw_bottom_button"/>
+
+  <View android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4px"
+        android:layout_marginBottom="4px"
+        android:background="@color/sw_button_divider"/>
+
+  <TextView android:id="@+id/right"
+            style="@style/sw_bottom_button"/>
+</LinearLayout>

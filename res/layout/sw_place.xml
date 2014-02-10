@@ -4,18 +4,22 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/widget_place">
+              android:gravity="center_horizontal"
+              android:background="@color/place_gradient_start">
   <TextView android:id="@+id/count"
-            style="@style/place_label"
+            style="@style/sw_place_label"
             android:text="\???"/>
 
   <TextView android:id="@+id/info"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
+            android:paddingBottom="12px"
             android:text="@string/unknown"
-            android:textSize="11sp"
+            android:textSize="18px"
             android:textColor="@color/place_info"
-            android:gravity="center|bottom"
-            android:fontFamily="sans-serif"/>
+            android:gravity="bottom"
+            android:singleLine="true"
+            android:ellipsize="none"/>
+
+  <include layout="@layout/sw_buttons"/>
 </LinearLayout>

@@ -7,34 +7,71 @@
     <item name="android:gravity">center_horizontal</item>
   </style>
 
-  <style name="counter_label" parent="def_label">
+  <style name="counter_label"
+         parent="def_label">
     <item name="android:padding">0dp</item>
-    <item name="android:textColor">#FFFAA001</item>
+    <item name="android:textColor">@color/counter</item>
     <item name="android:textSize">40sp</item>
     <item name="android:fontFamily">sans-serif</item>
     <item name="android:singleLine">true</item>
     <item name="android:ellipsize">none</item>
   </style>
 
-  <style name="place_label" parent="counter_label">
+  <style name="place_label"
+         parent="counter_label">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">0dp</item>
     <item name="android:layout_weight">1</item>
     <item name="android:gravity">center</item>
-    <item name="android:textColor">#FFE01010</item>
+    <item name="android:textColor">@color/place_counter</item>
     <item name="android:textSize">38sp</item>
     <item name="android:singleLine">true</item>
     <item name="android:ellipsize">none</item>
   </style>
 
   <style name="button">
-    <item name="android:layout_height">60dp</item>
     <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">60dp</item>
     <item name="android:layout_weight">1</item>
     <item name="android:gravity">center</item>
     <item name="android:textSize">40sp</item>
-    <item name="android:textColor">#FF2491BE</item>
+    <item name="android:textColor">@color/enter_place_button_text</item>
     <item name="android:fontFamily">sans-serif</item>
     <item name="android:background">@drawable/clickable</item>
+  </style>
+
+  <style name="sw_counter_label">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">0dp</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:textColor">@color/counter</item>
+    <item name="android:textSize">60px</item>
+    <item name="android:gravity">center</item>
+  </style>
+
+  <style name="sw_bottom_button">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:textSize">16px</item>
+    <item name="android:textColor">@color/sw_button_text</item>
+    <item name="android:gravity">center</item>
+    <item name="android:clickable">true</item>
+  </style>
+
+  <style name="sw_enter_place_button">
+    <item name="android:layout_width">0dp</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_weight">1</item>
+    <item name="android:layout_margin">1px</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textSize">20px</item>
+    <item name="android:background">#FF101010</item>
+    <item name="android:clickable">true</item>
+  </style>
+
+  <style name="sw_place_label"
+         parent="sw_counter_label">
+    <item name="android:textColor">@color/place_counter</item>
   </style>
 </resources>

@@ -20,3 +20,4 @@ local.properties
 .project
 _work/
 .idea/
+proguard_logs/
