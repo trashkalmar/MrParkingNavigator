@@ -27,6 +27,7 @@ public class SwNavigatorScreen extends SwBaseScreen {
   private static final int MARKER_WIDTH = 33;
   private static final int MARKER_HEIGHT = 13;
 
+  private final SwBaseScreen mReturnScreen;
 
   private final Bitmap mFloor;
   private final Bitmap mFloorThumb;
@@ -58,8 +59,9 @@ public class SwNavigatorScreen extends SwBaseScreen {
   private int mScrollY;
 
 
-  public SwNavigatorScreen(SwControlFlow flow) {
+  public SwNavigatorScreen(SwControlFlow flow, SwBaseScreen returnScreen) {
     super(flow);
+    mReturnScreen = returnScreen;
 
     mFloorThumb = BitmapFactory.decodeResource(app().getResources(), R.drawable.thumb_sw);
     mThumbSize = mFloorThumb.getWidth();
@@ -138,6 +140,16 @@ public class SwNavigatorScreen extends SwBaseScreen {
   @Override
   protected int getLayoutResource() {
     return R.layout.sw_navigator;
+  }
+
+  @Override
+  public boolean onBack() {
+    if (mReturnScreen != null) {
+      mFlow.run(mReturnScreen);
+      return true;
+    }
+
+    return false;
   }
 
   @Override

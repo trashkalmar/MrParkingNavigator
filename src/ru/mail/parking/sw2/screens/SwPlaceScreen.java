@@ -86,7 +86,7 @@ public class SwPlaceScreen extends SwBaseScreen {
     root.findViewById(R.id.right).setOnClickListener(new ControlView.OnClickListener() {
       @Override
       public void onClick(ControlView v) {
-        mFlow.run(new SwNavigatorScreen(mFlow));
+        mFlow.run(new SwNavigatorScreen(mFlow, SwPlaceScreen.this));
       }
     });
   }
