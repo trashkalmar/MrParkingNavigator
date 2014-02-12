@@ -27,7 +27,7 @@ public class EnterPlaceActivity extends Activity {
   private TextView mButton0;
 
 
-  private View.OnClickListener mNumClickListener = new View.OnClickListener() {
+  private final View.OnClickListener mNumClickListener = new View.OnClickListener() {
     @Override
     public void onClick(View v) {
       if (mPlace > 99)
@@ -40,7 +40,7 @@ public class EnterPlaceActivity extends Activity {
     }
   };
 
-  private View.OnClickListener mSettingsClickListener = new View.OnClickListener() {
+  private final View.OnClickListener mSettingsClickListener = new View.OnClickListener() {
     @Override
     public void onClick(View v) {
       startActivity(new Intent(EnterPlaceActivity.this, SettingsActivity.class));

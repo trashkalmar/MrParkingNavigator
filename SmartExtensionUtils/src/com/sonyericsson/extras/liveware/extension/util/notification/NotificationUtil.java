@@ -575,7 +575,7 @@ public class NotificationUtil {
     StringBuilder whereBuilder = new StringBuilder();
     whereBuilder.append(Notification.EventColumns.SOURCE_ID + " IN ( ");
     for (int i = 0; i < sourceIds.size() - 1; i++) {
-      whereBuilder.append(sourceIds.get(i) + ", ");
+      whereBuilder.append(sourceIds.get(i)).append(", ");
     }
     whereBuilder.append(sourceIds.get(sourceIds.size() - 1));
     whereBuilder.append(" )");

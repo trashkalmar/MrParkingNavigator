@@ -42,8 +42,6 @@
   <string name="info_last_refresh">Обновлено в %s</string>
   <string name="info_last_places">Свободных мест: %d</string>
   <string name="info_last_data">Данные:</string>
-  <string name="info_refresh_now">Обновить сейчас</string>
-  <string name="info_refresh_failed">не удалось загрузить данные</string>
 
   <!-- About screen -->
   <string name="about_title">О программе…</string>

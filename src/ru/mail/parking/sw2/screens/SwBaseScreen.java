@@ -19,9 +19,10 @@ import ru.mail.parking.sw2.SwControlFlow;
 import static ru.mail.parking.App.app;
 
 public abstract class SwBaseScreen {
-  protected SwControlFlow mFlow;
-  protected ControlViewGroup mRoot;
+  private ControlViewGroup mRoot;
+  protected final SwControlFlow mFlow;
   protected boolean mAbort;
+
 
   public SwBaseScreen(SwControlFlow flow) {
     mFlow = flow;
@@ -30,6 +31,8 @@ public abstract class SwBaseScreen {
   public void onResume() {}
 
   public void onPause() {}
+
+  public void onSwipe(int direction) {}
 
   public boolean start() {
     int layout = getLayoutResource();

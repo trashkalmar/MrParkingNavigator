@@ -16,7 +16,6 @@ import ru.mail.parking.widget.MainWidgetProvider;
 import static ru.mail.parking.App.floors;
 
 public class NavigatorActivity extends Activity {
-
   private Place mPlace;
   private boolean mFromInput;
 

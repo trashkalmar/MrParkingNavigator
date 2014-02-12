@@ -117,9 +117,7 @@ public class DeviceInfoHelper {
    * @return host app or null if no host app found
    */
   private static HostApplicationInfo getHostApp(Context context, String hostAppPackageName) {
-    HostApplicationInfo hostApp = RegistrationAdapter.getHostApplication(
-      context, hostAppPackageName);
-    return hostApp;
+    return RegistrationAdapter.getHostApplication(context, hostAppPackageName);
   }
 
   /**

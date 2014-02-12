@@ -5,6 +5,7 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlObjectClickEvent;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlViewGroup;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
@@ -49,6 +50,11 @@ public class SwControlFlow extends ControlExtension {
   }
 
   @Override
+  public void showBitmap(Bitmap bitmap) {
+    super.showBitmap(bitmap);
+  }
+
+  @Override
   public void sendText(int layoutReference, String text) {
     super.sendText(layoutReference, text);
   }
@@ -72,6 +78,12 @@ public class SwControlFlow extends ControlExtension {
   public void onResume() {
     if (mCurScreen != null)
       mCurScreen.onResume();
+  }
+
+  @Override
+  public void onSwipe(int direction) {
+    if (mCurScreen != null)
+      mCurScreen.onSwipe(direction);
   }
 
   public void goHome() {

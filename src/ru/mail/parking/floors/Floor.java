@@ -22,7 +22,7 @@ public final class Floor {
     int count = dis.readByte() + 1;
     mMaxPlace = mMinPlace + count - 1;
 
-    mPlaces = new SparseArray<Place>(count);
+    mPlaces = new SparseArray<>(count);
     for (int i = mMinPlace; i <= mMaxPlace; i++) {
       Place p = new Place(i, mNumber, dis);
       mPlaces.put(i, p);
@@ -55,6 +55,22 @@ public final class Floor {
 
       case 5:
         return R.drawable.floor5;
+
+      default:
+        return 0;
+    }
+  }
+
+  public int getSwImageRes() {
+    switch (mNumber) {
+      case 3:
+        return R.drawable.floor3_sw;
+
+      case 4:
+        return R.drawable.floor4_sw;
+
+      case 5:
+        return R.drawable.floor5_sw;
 
       default:
         return 0;
