@@ -5,6 +5,7 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
 import com.sonyericsson.extras.liveware.extension.util.registration.DeviceInfoHelper;
 import com.sonyericsson.extras.liveware.extension.util.registration.RegistrationInformation;
 
+import ru.mail.parking.App;
 import ru.mail.parking.sw2.SwControlFlow;
 
 public class SwService extends ExtensionService {
@@ -22,6 +23,17 @@ public class SwService extends ExtensionService {
   @Override
   protected boolean keepRunningWhenConnected() {
     return false;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    App.app().setHasSmartwatch(areAnyAccessoriesConnected());
+  }
+
+  @Override
+  protected void onConnectionChanged(boolean connected) {
+    App.app().setHasSmartwatch(connected);
   }
 
   @Override

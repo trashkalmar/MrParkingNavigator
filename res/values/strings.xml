@@ -59,7 +59,7 @@
   <string name="sw_show">Show</string>
 
   <!-- Non-translatable strings -->
-  <string name="build_date">13-FEB-2014</string>
+  <string name="build_date">14-FEB-2014</string>
   <string name="prefs_key_update_mode">update_policy</string>
   <string name="prefs_key_click_action">click_action</string>
   <string name="prefs_key_doubletap_action">doubletap_action</string>
