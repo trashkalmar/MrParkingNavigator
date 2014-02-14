@@ -65,13 +65,11 @@ public class UpdateService extends IntentService {
 
       App.prefs().setLastInfo(free, d.getTime(), line);
       MainWidgetProvider.updateAll();
-    } catch (IOException e) {
-    } catch (JSONException e) {
-    } catch (ParseException e) {
+    } catch (IOException | JSONException | ParseException ignored) {
     } finally {
       sIsUpdating = false;
 
-      if (wl != null && wl.isHeld())
+      if (wl.isHeld())
         wl.release();
     }
   }

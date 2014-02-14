@@ -42,8 +42,6 @@
   <string name="info_last_refresh">Refreshed at %s</string>
   <string name="info_last_places">Free places: %d</string>
   <string name="info_last_data">Data:</string>
-  <string name="info_refresh_now">Refresh now</string>
-  <string name="info_refresh_failed">Failed to fetch data</string>
 
   <!-- About screen -->
   <string name="about_title">About…</string>
@@ -52,8 +50,16 @@
   <string name="about_full_page">Full page: p.corp.mail.ru</string>
   <string name="about_github">Source code: www.github.com/trashkalmar/MrParkingNavigator</string>
 
+  <!-- SmartWatch strings -->
+  <string name="sw_title">@string/app_name</string>
+  <string name="sw_floor_format">Floor -%1$d, side %2$s</string>
+  <string name="sw_set_place">Set place</string>
+  <string name="sw_refresh">Refresh</string>
+  <string name="sw_leave">@string/floor_leave</string>
+  <string name="sw_show">Show</string>
+
   <!-- Non-translatable strings -->
-  <string name="build_date">09-OCT-2013</string>
+  <string name="build_date">14-FEB-2014</string>
   <string name="prefs_key_update_mode">update_policy</string>
   <string name="prefs_key_click_action">click_action</string>
   <string name="prefs_key_doubletap_action">doubletap_action</string>

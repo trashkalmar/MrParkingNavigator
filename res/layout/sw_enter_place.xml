@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+  <LinearLayout android:layout_width="match_parent"
+                android:layout_height="30px"
+                android:background="@color/place_gradient_start">
+    <TextView android:id="@+id/place"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:paddingLeft="4px"
+              android:textSize="18px"
+              android:textColor="@color/place_counter"/>
+
+    <TextView android:id="@+id/info"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:gravity="right|center_vertical"
+              android:paddingRight="4px"
+              android:textSize="18px"
+              android:textColor="@color/place_info"/>
+  </LinearLayout>
+
+  <LinearLayout android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1">
+      <TextView android:id="@+id/b1"
+                style="@style/sw_enter_place_button"
+                android:tag="b:1"/>
+      <TextView android:id="@+id/b2"
+                style="@style/sw_enter_place_button"
+                android:tag="b:2"/>
+      <TextView android:id="@+id/b3"
+                style="@style/sw_enter_place_button"
+                android:tag="b:3"/>
+      <TextView android:id="@+id/backspace"
+                style="@style/sw_enter_place_button"
+                android:textSize="32px"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1">
+      <TextView android:id="@+id/b4"
+                style="@style/sw_enter_place_button"
+                android:tag="b:4"/>
+      <TextView android:id="@+id/b5"
+                style="@style/sw_enter_place_button"
+                android:tag="b:5"/>
+      <TextView android:id="@+id/b6"
+                style="@style/sw_enter_place_button"
+                android:tag="b:6"/>
+      <TextView android:id="@+id/b0"
+                style="@style/sw_enter_place_button"
+                android:tag="b:0"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:layout_weight="1">
+      <TextView android:id="@+id/b7"
+                style="@style/sw_enter_place_button"
+                android:tag="b:7"/>
+      <TextView android:id="@+id/b8"
+                style="@style/sw_enter_place_button"
+                android:tag="b:8"/>
+      <TextView android:id="@+id/b9"
+                style="@style/sw_enter_place_button"
+                android:tag="b:9"/>
+      <TextView android:id="@+id/ok"
+                style="@style/sw_enter_place_button"/>
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

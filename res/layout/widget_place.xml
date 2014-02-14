@@ -15,7 +15,7 @@
             android:paddingBottom="2dp"
             android:text="@string/unknown"
             android:textSize="11sp"
-            android:textColor="#FF0000FF"
+            android:textColor="@color/place_info"
             android:gravity="center|bottom"
             android:fontFamily="sans-serif"/>
 </LinearLayout>

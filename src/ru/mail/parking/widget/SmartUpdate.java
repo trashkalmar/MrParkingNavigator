@@ -23,15 +23,16 @@ import static java.util.Calendar.getInstance;
 import static ru.mail.parking.App.app;
 
 public final class SmartUpdate {
-  private static AlarmManager mManager;
+  private static final AlarmManager sAlarmManager;
 
   static {
-    mManager = (AlarmManager)app().getSystemService(Context.ALARM_SERVICE);
+    sAlarmManager = (AlarmManager)app().getSystemService(Context.ALARM_SERVICE);
   }
 
   private SmartUpdate() {}
 
 
+  @SuppressWarnings("UnusedDeclaration")
   public enum Policy {
     auto {
       @Override
@@ -111,7 +112,7 @@ public final class SmartUpdate {
     }
 
     protected void schedule(long delay) {
-      mManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + delay, createActionIntent());
+      sAlarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + delay, createActionIntent());
     }
 
     public abstract void schedule();
@@ -146,7 +147,7 @@ public final class SmartUpdate {
 
   public static void abort() {
     PendingIntent pi = createActionIntent();
-    mManager.cancel(pi);
+    sAlarmManager.cancel(pi);
     pi.cancel();
 
     NetworkAwaiter.getInstance().cancelAll();

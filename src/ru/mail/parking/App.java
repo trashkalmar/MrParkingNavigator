@@ -3,16 +3,20 @@ package ru.mail.parking;
 import android.app.Application;
 
 import ru.mail.parking.floors.FloorNavigator;
-import ru.mail.parking.widget.MainWidgetProvider;
-import ru.mail.parking.widget.SmartUpdate;
 import ru.mail.parking.utils.NetworkAwaiter;
 import ru.mail.parking.utils.NetworkStateReceiver;
+import ru.mail.parking.widget.MainWidgetProvider;
+import ru.mail.parking.widget.SmartUpdate;
 
 public class App extends Application
               implements NetworkStateReceiver.NetworkChangedListener {
   private static App sInstance;
   private static Preferences sPrefs;
   private static FloorNavigator sFloors;
+
+  private boolean mHasWidgets;
+  private boolean mHasSmartwatch;
+  private boolean mRunning;
 
 
   private void watchNetwork(boolean watch) {
@@ -31,8 +35,7 @@ public class App extends Application
     sPrefs = new Preferences();
     sFloors = new FloorNavigator();
 
-    if (MainWidgetProvider.getWidgetIds().length != 0)
-      start();
+    setHasWidgets(MainWidgetProvider.getWidgetIds().length != 0);
   }
 
   public static App app() {
@@ -52,13 +55,27 @@ public class App extends Application
     NetworkAwaiter.getInstance().onNetworkChanged(hasNetwork);
   }
 
-  public void start() {
-    watchNetwork(true);
-    SmartUpdate.force();
+  private void onConsumersChanged() {
+    boolean run = (mHasWidgets || mHasSmartwatch);
+    if (run == mRunning)
+      return;
+
+    mRunning = run;
+    watchNetwork(mRunning);
+
+    if (mRunning)
+      SmartUpdate.force();
+    else
+      SmartUpdate.abort();
   }
 
-  public void stop() {
-    watchNetwork(false);
-    SmartUpdate.abort();
+  public void setHasWidgets(boolean hasWidgets) {
+    mHasWidgets = hasWidgets;
+    onConsumersChanged();
+  }
+
+  public void setHasSmartwatch(boolean hasSmartwatch) {
+    mHasSmartwatch = hasSmartwatch;
+    onConsumersChanged();
   }
 }

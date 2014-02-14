@@ -16,7 +16,7 @@ public class NavigatorFloorView implements MultiscrollView.AttachedView {
   private static final int MARKER_WIDTH = 49;
   private static final int MARKER_HEIGHT = 19;
 
-  private MultiscrollView mScrollView;
+  private final MultiscrollView mScrollView;
   private final Paint mFloorPaint = new Paint();
   private final Paint mMarkerPaint = new Paint();
 
@@ -104,11 +104,6 @@ public class NavigatorFloorView implements MultiscrollView.AttachedView {
       public boolean onScaleBegin(ScaleGestureDetector detector) {
         mInitialZoom = mZoom;
         return super.onScaleBegin(detector);
-      }
-
-      @Override
-      public void onScaleEnd(ScaleGestureDetector detector) {
-        super.onScaleEnd(detector);
       }
     };
   }

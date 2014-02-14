@@ -15,8 +15,8 @@ import ru.mail.parking.utils.Utils;
 public class FloorNavigator {
   private static final String FN_FLOORS = "floors.map";
 
-  private final List<Floor> mFloors = new ArrayList<Floor>();
-  private final List<Pair<Integer, Integer>> mInvalidRegions = new ArrayList<Pair<Integer,Integer>>();
+  private final List<Floor> mFloors = new ArrayList<>();
+  private final List<Pair<Integer, Integer>> mInvalidRegions = new ArrayList<>();
 
   public FloorNavigator() {
     InputStream ais = null;
@@ -35,7 +35,7 @@ public class FloorNavigator {
         int start = dis.readShort();
         int end = start + dis.readByte();
 
-        mInvalidRegions.add(new Pair<Integer,Integer>(start, end));
+        mInvalidRegions.add(new Pair<>(start, end));
 
         head = dis.readByte();
       }

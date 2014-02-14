@@ -42,8 +42,6 @@
   <string name="info_last_refresh">Обновлено в %s</string>
   <string name="info_last_places">Свободных мест: %d</string>
   <string name="info_last_data">Данные:</string>
-  <string name="info_refresh_now">Обновить сейчас</string>
-  <string name="info_refresh_failed">не удалось загрузить данные</string>
 
   <!-- About screen -->
   <string name="about_title">О программе…</string>
@@ -51,4 +49,10 @@
   <string name="about_author">Автор: Александр Марчук\na.marchuk@corp.mail.ru или kalmar.trash@mail.ru</string>
   <string name="about_full_page">Полная страница: p.corp.mail.ru</string>
   <string name="about_github">Исходный код: www.github.com/trashkalmar/MrParkingNavigator</string>
+
+  <!-- SmartWatch strings -->
+  <string name="sw_floor_format">-%1$d этаж, лифт %2$s</string>
+  <string name="sw_set_place">Занять</string>
+  <string name="sw_refresh">Обновить</string>
+  <string name="sw_show">Навигатор</string>
 </resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="smart_watch_2_control_width">220px</dimen>
+  <dimen name="smart_watch_2_control_height">176px</dimen>
+</resources>

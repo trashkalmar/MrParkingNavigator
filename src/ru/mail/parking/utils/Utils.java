@@ -16,17 +16,17 @@ import ru.mail.parking.R;
 public final class Utils {
   public static final String EXTRA_PLACE = "place";
 
-  private static Handler sUiHandler = new Handler(Looper.getMainLooper());
-  public static final float sScreenDensity = App.app().getResources().getDisplayMetrics().density;
+  private static final Handler sUiHandler = new Handler(Looper.getMainLooper());
+  private static final float sScreenDensity = App.app().getResources().getDisplayMetrics().density;
+
 
   private Utils() {}
-
 
   public static float dp(float v) {
     return (float)(v * sScreenDensity + 0.5);
   }
 
-  public static String formatDate(Calendar c, Preferences.TimeFormat format) {
+  private static String formatDate(Calendar c, Preferences.TimeFormat format) {
     SimpleDateFormat sdf = new SimpleDateFormat(format.getFormatString());
     return sdf.format(c.getTime());
   }

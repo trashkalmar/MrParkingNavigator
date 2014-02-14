@@ -8,6 +8,8 @@ import ru.mail.parking.utils.Utils;
 import ru.mail.parking.widget.MainWidgetProvider;
 import ru.mail.parking.widget.SmartUpdate;
 
+import static ru.mail.parking.App.app;
+
 public class Preferences implements SharedPreferences.OnSharedPreferenceChangeListener {
   public static final String NAME = "settings";
 
@@ -36,8 +38,8 @@ public class Preferences implements SharedPreferences.OnSharedPreferenceChangeLi
 
     static ClickAction getDefault(boolean doubletap) {
       if (sDefault == null) {
-        sDefault = valueOf(App.app().getString(R.string.prefs_config_click_action_default));
-        sDefaultDoubletap = valueOf(App.app().getString(R.string.prefs_config_doubletap_action_default));
+        sDefault = valueOf(app().getString(R.string.prefs_config_click_action_default));
+        sDefaultDoubletap = valueOf(app().getString(R.string.prefs_config_doubletap_action_default));
       }
 
       return (doubletap ? sDefaultDoubletap : sDefault);
@@ -54,13 +56,19 @@ public class Preferences implements SharedPreferences.OnSharedPreferenceChangeLi
     time {
       @Override
       public String getFormatString() {
-        return App.app().getString(R.string.time_format);
+        return app().getString(R.string.time_format);
       }
     },
     full {
       @Override
       public String getFormatString() {
-        return time.getFormatString() + " " + App.app().getString(R.string.time_format_date);
+        return time.getFormatString() + ' ' + app().getString(R.string.time_format_date);
+      }
+    },
+    smartwatch {
+      @Override
+      public String getFormatString() {
+        return time.getFormatString() + '\n' + app().getString(R.string.time_format_date);
       }
     };
 
@@ -68,7 +76,7 @@ public class Preferences implements SharedPreferences.OnSharedPreferenceChangeLi
 
     public static TimeFormat getDefault() {
       if (sDefault == null)
-        sDefault = valueOf(App.app().getString(R.string.prefs_config_time_format_default));
+        sDefault = valueOf(app().getString(R.string.prefs_config_time_format_default));
 
       return sDefault;
     }
@@ -78,7 +86,7 @@ public class Preferences implements SharedPreferences.OnSharedPreferenceChangeLi
 
 
   public Preferences() {
-    mPrefs = App.app().getSharedPreferences(NAME, Context.MODE_PRIVATE);
+    mPrefs = app().getSharedPreferences(NAME, Context.MODE_PRIVATE);
     mPrefs.registerOnSharedPreferenceChangeListener(this);
   }
 
@@ -99,12 +107,16 @@ public class Preferences implements SharedPreferences.OnSharedPreferenceChangeLi
     return Utils.formatDate(mPrefs.getLong(Keys.last_update.name(), 0), getTimeFormat(), true);
   }
 
+  public String getSwLastRefresh() {
+    return Utils.formatDate(mPrefs.getLong(Keys.last_update.name(), 0), TimeFormat.smartwatch, true);
+  }
+
   public int getLastPlaces() {
     return mPrefs.getInt(Keys.last_places.name(), -1);
   }
 
   public String getLastData() {
-    return mPrefs.getString(Keys.last_data.name(), App.app().getString(R.string.unknown));
+    return mPrefs.getString(Keys.last_data.name(), app().getString(R.string.unknown));
   }
 
   public Place getStoredPlace() {
@@ -162,5 +174,13 @@ public class Preferences implements SharedPreferences.OnSharedPreferenceChangeLi
     if (place == Place.INVALID) e.remove(Keys.stored_place.name());
                            else e.putInt(Keys.stored_place.name(), place);
     e.commit();
+  }
+
+  public void registerListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+    mPrefs.registerOnSharedPreferenceChangeListener(listener);
+  }
+
+  public void unregisterListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+    mPrefs.unregisterOnSharedPreferenceChangeListener(listener);
   }
 }

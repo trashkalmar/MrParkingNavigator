@@ -19,12 +19,12 @@ import static ru.mail.parking.Preferences.TimeFormat;
 public class MainWidgetProvider extends AppWidgetProvider {
   @Override
   public void onEnabled(Context context) {
-    app().start();
+    app().setHasWidgets(true);
   }
 
   @Override
   public void onDisabled(Context context) {
-    app().stop();
+    app().setHasWidgets(false);
   }
 
   @Override
